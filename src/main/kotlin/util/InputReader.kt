@@ -15,4 +15,16 @@ object InputReader {
     private fun fromResources(day: Int): File {
         return File(javaClass.classLoader.getResource("input_day_$day.txt").toURI())
     }
+
+    fun getTestInputAsString(day: Int): String {
+        return fromTestResources(day).readText()
+    }
+
+    fun getTestInputAsList(day: Int): List<String> {
+        return fromTestResources(day).readLines()
+    }
+
+    private fun fromTestResources(day: Int): File {
+        return File("src/test/resources/input_day_$day.txt")
+    }
 }
