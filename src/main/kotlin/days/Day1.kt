@@ -3,14 +3,13 @@ package days
 class Day1 : Day(1) {
 
     override fun partOne(): Any {
-        return inputList.map { it.toInt() }.zipWithNext().filter { it.first < it.second }.size
+        return inputList.map { it.toInt() }.zipWithNext().count { it.first < it.second }
     }
 
     override fun partTwo(): Any {
         val list = inputList.map { it.toInt() }
-        val n = 2
-        return list.dropLast(n).indices
-            .map { index -> (0..n).sumOf { offset -> list[index + offset] } }
-            .zipWithNext().filter { it.first < it.second }.size
+        return list.dropLast(2).indices
+            .map { index -> (0..2).sumOf { offset -> list[index + offset] } }
+            .zipWithNext().count { it.first < it.second }
     }
 }

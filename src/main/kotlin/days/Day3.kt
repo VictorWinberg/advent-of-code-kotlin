@@ -5,7 +5,7 @@ class Day3 : Day(3) {
     override fun partOne(): Any {
         val list = inputList[0].toList().map { mutableListOf(0, 0) }
         inputList.forEach {
-            it.toList().map { i -> i.toString().toInt() }.forEachIndexed { index, i -> list[index][i] += 1 }
+            it.toList().map { i -> "$i".toInt() }.forEachIndexed { index, i -> list[index][i] += 1 }
         }
         val gammaRate = list.map { pair -> if (pair[0] < pair[1]) 1 else 0 }.joinToString("").toInt(2)
         val epsilonRate = list.map { pair -> if (pair[0] < pair[1]) 0 else 1 }.joinToString("").toInt(2)
