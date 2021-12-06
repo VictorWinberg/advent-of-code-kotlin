@@ -35,6 +35,6 @@ class Day5 : Day(5) {
             }
         }
 
-        return matrix.map { it.toList() }.flatten().count{ it >= 2 }
+        return matrix.map { it.toList() }.flatten().count { it >= 2 }
     }
 }
