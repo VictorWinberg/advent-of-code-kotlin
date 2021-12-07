@@ -3,7 +3,7 @@ package days
 class Day6 : Day(6) {
 
     override fun partOne(): Any {
-        return solve(80)
+        return solve(80).toInt()
     }
 
     override fun partTwo(): Any {
