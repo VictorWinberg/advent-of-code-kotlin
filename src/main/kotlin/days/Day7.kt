@@ -4,18 +4,20 @@ import kotlin.math.abs
 
 class Day7 : Day(7) {
 
+    private fun parseInput(): List<Int> {
+        return inputString.split(",").map { it.toInt() }
+    }
+
     override fun partOne(): Any {
-        return solveWith(::fuelLin)
+        return parseInput().minSolve(::fuelLin)
     }
 
     override fun partTwo(): Any {
-        return solveWith(::fuelTri)
+        return parseInput().minSolve(::fuelTri)
     }
 
-    private fun solveWith(fn: (Int, List<Int>) -> Int): Int {
-        val input = inputString.split(",").map { it.toInt() }
-        val max = input.maxOrNull() ?: throw Error("Missing input")
-        return (0..max).minOf { value -> fn(value, input) }
+    private fun List<Int>.minSolve(fn: (Int, List<Int>) -> Int): Int {
+        return (minOf { it }..maxOf { it }).minOf { value -> fn(value, this) }
     }
 
     private fun fuelLin(value: Int, input: List<Int>): Int {
