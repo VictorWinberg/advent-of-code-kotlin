@@ -4,9 +4,7 @@ import kotlin.math.abs
 
 class Day7 : Day(7) {
 
-    private fun parseInput(): List<Int> {
-        return inputString.split(",").map { it.toInt() }
-    }
+    private fun parseInput(): List<Int> = inputString.split(",").map { it.toInt() }
 
     override fun partOne(): Any {
         return parseInput().minSolve(::fuelLin)
