@@ -16,35 +16,29 @@ class Day8 : Day(8) {
         val output = string.split(" | ")[1].split(" ")
 
         val mutation = allPermutations("abcdefg".toSet()).find { chars ->
-            input.all { segment -> sevenSegment(segment.map { chars[it - 'a'] }.toString()) != null }
+            input.all { segment -> sevenSegment(segment.map { chars[it - 'a'] }) != null }
         } ?: throw Error("Couldn't find mutation!")
 
         return output
             .map { segment ->
-                sevenSegment(segment.map { mutation[it - 'a'] }.toString()) ?: throw Error("Incorrect mutation!")
+                sevenSegment(segment.map { mutation[it - 'a'] }) ?: throw Error("Incorrect mutation!")
             }
             .joinToString("").toInt()
     }
 
-    private fun sevenSegment(input: String): Int? {
-        val a = input.contains('a')
-        val b = input.contains('b')
-        val c = input.contains('c')
-        val d = input.contains('d')
-        val e = input.contains('e')
-        val f = input.contains('f')
-        val g = input.contains('g')
+    private fun sevenSegment(input: List<Char>): Int? {
+        val sortedIn = input.sorted().joinToString("")
 
-        if (listOf(a, b, c, e, f, g).all { it } && listOf(d).none { it }) return 0
-        if (listOf(c, f).all { it } && listOf(a, b, d, e, g).none { it }) return 1
-        if (listOf(a, c, d, e, g).all { it } && listOf(b, f).none { it }) return 2
-        if (listOf(a, c, d, f, g).all { it } && listOf(b, e).none { it }) return 3
-        if (listOf(b, c, d, f).all { it } && listOf(a, e, g).none { it }) return 4
-        if (listOf(a, b, d, f, g).all { it } && listOf(c, e).none { it }) return 5
-        if (listOf(a, b, d, e, f, g).all { it } && listOf(c).none { it }) return 6
-        if (listOf(a, c, f).all { it } && listOf(b, d, e, g).none { it }) return 7
-        if (listOf(a, b, c, d, e, f, g).all { it }) return 8
-        if (listOf(a, b, c, d, f, g).all { it } && listOf(e).none { it }) return 9
+        if (sortedIn == "abcefg") return 0
+        if (sortedIn == "cf") return 1
+        if (sortedIn == "acdeg") return 2
+        if (sortedIn == "acdfg") return 3
+        if (sortedIn == "bcdf") return 4
+        if (sortedIn == "abdfg") return 5
+        if (sortedIn == "abdefg") return 6
+        if (sortedIn == "acf") return 7
+        if (sortedIn == "abcdefg") return 8
+        if (sortedIn == "abcdfg") return 9
 
         return null
     }
