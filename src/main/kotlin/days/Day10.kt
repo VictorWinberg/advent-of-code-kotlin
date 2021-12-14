@@ -45,7 +45,7 @@ class Day10 : Day(10) {
             }
             true
         }
-        return list
+        return false
     }
 
     private fun opening(char: Char) = when (char) {
